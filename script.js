@@ -1,3 +1,7 @@
+let a
+let b
+let operator
+
 function add(a, b) {
     if ((a + b).toString().includes('.')) {
         return (a + b).toFixed(2)
@@ -29,12 +33,8 @@ function divide(a, b) {
     else return a / b
 }
 
-let a
-let b
-let operator
-
 const display = document.querySelector('.display')
-const numbernumbers = document.querySelectorAll('.number')
+const ButtonNumbers = document.querySelectorAll('.number')
 const decimal = document.querySelector('.decimal')
 const clear = document.querySelector('.clear')
 const backspace = document.querySelector('.backspace')
@@ -46,11 +46,14 @@ const division = document.querySelector('.division')
 const equal = document.querySelector('.equal')
 const negative = document.querySelector('.negative')
 
-numbernumbers.forEach(function(e) 
+ButtonNumbers.forEach(function(e) 
     {e.addEventListener('click', function(e) {
-        if (display.textContent == 0) {
+        if (display.textContent == '') {
             display.textContent = e.target.textContent
             b = undefined
+        }
+        else if (display.textContent == 'Too much!!' || display.textContent == 'LOL NO >:v') {
+            display.textContent = ''
         }
         else if (b) {
             display.textContent = e.target.textContent
@@ -155,6 +158,9 @@ decimal.addEventListener('click', function(e) {
     if (display.textContent == '') {
         display.textContent = 0 + '.'
     }
+    else if (display.textContent == 'Too much!!' || display.textContent == 'LOL NO >:v') {
+        display.textContent = ''
+    }
     else if (b && !display.textContent.includes('.')) {
         display.textContent += '.'
         b = undefined
@@ -170,32 +176,32 @@ clear.addEventListener('click', function() {
 })
 
 addition.addEventListener('click', function() {
-    checkFirstNumber()
     checkDisplay()
+    checkFirstNumber()
     operator = 'addition'
 })
 
 substraction.addEventListener('click', function() {
-    checkFirstNumber()
     checkDisplay()
+    checkFirstNumber()
     operator = 'substraction'
 })
 
 multiplication.addEventListener('click', function() {
-    checkFirstNumber()
     checkDisplay()
+    checkFirstNumber()
     operator = 'multiplication'
 })
 
 division.addEventListener('click', function() {
-    checkFirstNumber()
     checkDisplay()
+    checkFirstNumber()
     operator = 'division'
 })
 
 equal.addEventListener('click', function() {
-    operate()
     checkDisplay()
+    operate()
     a = undefined
 })
 
@@ -234,6 +240,10 @@ function checkDisplay() {
     }
     else if (display.textContent == 'NaN') {
         display.textContent = 0
+    }
+    else if (display.textContent == 'Too much!!' || display.textContent == 'LOL NO >:v') {
+        display.textContent = ''
+        a = undefined
     }
 }
 
